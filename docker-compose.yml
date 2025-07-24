@@ -1,0 +1,20 @@
+
+
+services:
+  localstack:
+    image: localstack/localstack:latest
+    container_name: localstack
+    ports:
+      - "4566:4566"
+      - "4571:4571"
+    environment:
+      SERVICES: lambda,apigateway,iam
+      DEBUG: "1"
+      DATA_DIR: /tmp/localstack/data
+      LAMBDA_EXECUTOR: docker-reuse
+      DOCKER_HOST: unix:///var/run/docker.sock
+      AWS_ACCESS_KEY_ID: test
+      AWS_SECRET_ACCESS_KEY: test
+    volumes:
+  
+      - /var/run/docker.sock:/var/run/docker.sock
